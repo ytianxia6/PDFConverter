@@ -1,9 +1,11 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ 生成的包含文件。
-// 供 PDFConverter.rc 使用
+// Microsoft Visual C++ generated include file.
+// Used by PDFConverter_zhCN.rc
 //
 #define IDS_ASKFORPAGENUMBER            102
-#define IDS_GPLDECLAREMENT              103
+#define IDS_GPLDECLAREMENT              106
+#define IDS_PICKINSPT                   104
+#define IDS_INSERT2CUR                  105
 
 // Next default values for new objects
 // 

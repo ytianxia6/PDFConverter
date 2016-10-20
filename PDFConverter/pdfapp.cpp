@@ -1,8 +1,13 @@
 #include "StdAfx.h"
+#include "resource.h"
+#include "AcExtensionModule.h"
+
 #include "rxmfcapi.h"
 
 #include "pdfapp.h"
 #include "rebuildPline.h"
+
+
 
 BOOL REALEQ(double d1, double d2, double fuzz=ZEROFUZZ);
 BOOL REALEQ(double d1, double d2, double fuzz)
@@ -338,7 +343,7 @@ void createImage(pdfapp_t* app, fz_display_node* pNode, int& idx)
 			pdfapp_Utf8Char2AcString(app->docpath, docPath);
 			ACHAR out[_MAX_PATH];
 			removeExt(docPath, out);
-			path.format(_T("%s_%d.PNG"), out, idx);
+			path.format(_T("%s_%d_%d.PNG"), out, app->pageno, idx);
 			char utf8Name[PATH_MAX];
 			pdfapp_AcString2Utf8Char(path, utf8Name);
 			fz_write_png(app->ctx, pixmap, utf8Name, 0);
@@ -576,10 +581,13 @@ AcCmColor getColor(pdfapp_t* app, fz_display_node* pNode)
 	float rgb[FZ_MAX_COLORS];
 	pNode->colorspace->to_rgb(app->ctx, pNode->colorspace, pNode->color, rgb);
 	AcCmColor color;
+	color.setColorMethod(AcCmEntityColor::ColorMethod::kByColor);
 	color.setRGB(rgb[0]*255, rgb[1]*255, rgb[2]*255);
-	if (!color.red() && !color.green() && !color.blue())
+	if ((color.red() <= 50) && (color.green() <= 50) && (color.blue() <= 50))
 	{
-		color.setColorIndex(0);
+		//color.setColorIndex(0);
+		//color.setColorMethod(AcCmEntityColor::ColorMethod::kByBlock);
+		color.setRGB(255-rgb[0]*255, 255-rgb[1]*255, 255-rgb[2]*255);
 	}
 	return color;
 }
@@ -794,6 +802,15 @@ AcString makeSegment(TextProp& prop)
 	return ret;
 }
 
+double calTextRotation(fz_matrix& mtx)
+{
+	AcGeMatrix2d mat;
+	mat.setCoordSystem(AcGePoint2d(mtx.e, mtx.f), AcGeVector2d(mtx.a, mtx.c), AcGeVector2d(mtx.b, mtx.d));
+	AcGeVector2d vec(1, 0);
+	vec.transformBy(mat);
+	return 2 * M_PI - vec.angle();
+}
+
 void creatText(pdfapp_t* app, fz_display_node* pNode)
 {
 	AcCmColor color = getColor(app, pNode);
@@ -810,11 +827,7 @@ void creatText(pdfapp_t* app, fz_display_node* pNode)
 	fromAcDbTextStyle(tmpStyle, idTxtStyle);
 	fz_matrix mtx = pNode->item.text->trm;
 	double expansion = fz_matrix_expansion(&mtx);
-	double rot = acos(mtx.a / expansion);
-	if (mtx.b < 0)
-	{
-		rot = -1 * rot;
-	}
+	double rot = calTextRotation(mtx);
 	TextProp curProp;
 	AcString curSegs;
 	AcGePoint3d pos;
@@ -1075,6 +1088,8 @@ void pdfapp_convertCurPage(pdfapp_t* app)
 	AcString outputName;
 	ACHAR out[_MAX_PATH];
 	removeExt(app->strFileName.kACharPtr(), out);
+	bool singlePage = (app->pageno > 0);
+	app->pageno = abs(app->pageno);
 	if (app->bOutputDwg)
 	{
 		outputName.format(_T("%s_%d.DWG"), out, app->pageno);
@@ -1119,6 +1134,32 @@ void pdfapp_convertCurPage(pdfapp_t* app)
 	}
 	delete pDb;
 	app->pDb = NULL;
+
+	if (singlePage)
+	{
+		CString strPrompt;
+		CAcModuleResourceOverride rs;
+		strPrompt.LoadString(IDS_INSERT2CUR);
+		acedInitGet(0, _T("Yes No"));
+		ACHAR kword[32];
+		int rc = acedGetKword((LPCTSTR)strPrompt, kword);
+		if ((RTCAN == rc) || (!_tcscmp(kword, _T("No"))))
+		{
+			return;
+		}
+
+		resbuf rb;
+		rb.restype = RTSHORT;
+		rb.resval.rint = 0;
+		acedSetVar(_T("CMDECHO"), &rb);
+
+		strPrompt.LoadString(IDS_PICKINSPT);
+		acutPrintf((LPCTSTR)strPrompt);
+		acedCommand(RTSTR, _T("_Insert"), RTSTR, outputName.kACharPtr(), RTSTR, PAUSE, RTSTR, _T(""), RTSTR, _T(""), RTSTR, _T(""), RTNONE);
+
+		rb.resval.rint = 1;
+		acedSetVar(_T("CMDECHO"), &rb);
+	}
 }
 
 void pdfapp_open(pdfapp_t* app, char* filename, int reload)
@@ -1189,10 +1230,8 @@ void pdfapp_open(pdfapp_t* app, char* filename, int reload)
 	}
 
 
-/*
-	if (app->pageno < 1)
+	if (app->pagecount == 1)
 		app->pageno = 1;
-*/
 	if (app->pageno > app->pagecount)
 		app->pageno = app->pagecount;
 	if (app->resolution < MINRES)
@@ -1220,7 +1259,7 @@ void pdfapp_open(pdfapp_t* app, char* filename, int reload)
 		acedSetStatusBarProgressMeter(msg, 0, app->pagecount);
 		for (int i=1; i<=app->pagecount; i++)
 		{
-			app->pageno = i;
+			app->pageno = -1 * i;//把页数变成负的是为了判断是否正在转换全部页，如是则不要在转换后提示是否插入
 			pdfapp_convertCurPage(app);
 			acedSetStatusBarProgressMeterPos(-1);
 		}
