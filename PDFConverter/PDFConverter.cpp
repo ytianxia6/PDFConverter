@@ -18,7 +18,9 @@ void pdfapp_open(pdfapp_t* app, char* filename, int reload);
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#if ZRX < 18
 extern "C" HWND adsw_acadMainWnd();
+#endif
 
 AC_IMPLEMENT_EXTENSION_MODULE(theArxDLL);
 

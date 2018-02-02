@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27323.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PDFConverter", "PDFConverter.vcxproj", "{BCCBBDC1-731E-452E-AC23-4F7E1C686A6F}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -30,6 +30,8 @@ Global
 		Release_2017_zhCN|x86 = Release_2017_zhCN|x86
 		Release_2017|x64 = Release_2017|x64
 		Release_2017|x86 = Release_2017|x86
+		Release_2018_zhCN|x64 = Release_2018_zhCN|x64
+		Release_2018_zhCN|x86 = Release_2018_zhCN|x86
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 		ReleaseOpenssl|x64 = ReleaseOpenssl|x64
@@ -56,6 +58,10 @@ Global
 		{BCCBBDC1-731E-452E-AC23-4F7E1C686A6F}.Release_2017|x64.Build.0 = Release_2017|x64
 		{BCCBBDC1-731E-452E-AC23-4F7E1C686A6F}.Release_2017|x86.ActiveCfg = Release_2017|Win32
 		{BCCBBDC1-731E-452E-AC23-4F7E1C686A6F}.Release_2017|x86.Build.0 = Release_2017|Win32
+		{BCCBBDC1-731E-452E-AC23-4F7E1C686A6F}.Release_2018_zhCN|x64.ActiveCfg = Release_2018_zhCN|x64
+		{BCCBBDC1-731E-452E-AC23-4F7E1C686A6F}.Release_2018_zhCN|x64.Build.0 = Release_2018_zhCN|x64
+		{BCCBBDC1-731E-452E-AC23-4F7E1C686A6F}.Release_2018_zhCN|x86.ActiveCfg = Release_2018_zhCN|Win32
+		{BCCBBDC1-731E-452E-AC23-4F7E1C686A6F}.Release_2018_zhCN|x86.Build.0 = Release_2018_zhCN|Win32
 		{BCCBBDC1-731E-452E-AC23-4F7E1C686A6F}.Release|x64.ActiveCfg = Release|x64
 		{BCCBBDC1-731E-452E-AC23-4F7E1C686A6F}.Release|x64.Build.0 = Release|x64
 		{BCCBBDC1-731E-452E-AC23-4F7E1C686A6F}.Release|x86.ActiveCfg = Release|Win32
@@ -84,6 +90,10 @@ Global
 		{5F615F91-DFF8-4F05-BF48-6222B7D86519}.Release_2017|x64.Build.0 = Release_2017|x64
 		{5F615F91-DFF8-4F05-BF48-6222B7D86519}.Release_2017|x86.ActiveCfg = Release_2017|Win32
 		{5F615F91-DFF8-4F05-BF48-6222B7D86519}.Release_2017|x86.Build.0 = Release_2017|Win32
+		{5F615F91-DFF8-4F05-BF48-6222B7D86519}.Release_2018_zhCN|x64.ActiveCfg = Release_2018_zhCN|x64
+		{5F615F91-DFF8-4F05-BF48-6222B7D86519}.Release_2018_zhCN|x64.Build.0 = Release_2018_zhCN|x64
+		{5F615F91-DFF8-4F05-BF48-6222B7D86519}.Release_2018_zhCN|x86.ActiveCfg = Release_2018_zhCN|Win32
+		{5F615F91-DFF8-4F05-BF48-6222B7D86519}.Release_2018_zhCN|x86.Build.0 = Release_2018_zhCN|Win32
 		{5F615F91-DFF8-4F05-BF48-6222B7D86519}.Release|x64.ActiveCfg = Release|x64
 		{5F615F91-DFF8-4F05-BF48-6222B7D86519}.Release|x64.Build.0 = Release|x64
 		{5F615F91-DFF8-4F05-BF48-6222B7D86519}.Release|x86.ActiveCfg = Release|Win32
@@ -112,6 +122,10 @@ Global
 		{5EDCF4FD-0291-4FB9-8D96-D58957CA5E3C}.Release_2017|x64.Build.0 = Release_2017|x64
 		{5EDCF4FD-0291-4FB9-8D96-D58957CA5E3C}.Release_2017|x86.ActiveCfg = Release_2017|Win32
 		{5EDCF4FD-0291-4FB9-8D96-D58957CA5E3C}.Release_2017|x86.Build.0 = Release_2017|Win32
+		{5EDCF4FD-0291-4FB9-8D96-D58957CA5E3C}.Release_2018_zhCN|x64.ActiveCfg = Release_2018_zhCN|x64
+		{5EDCF4FD-0291-4FB9-8D96-D58957CA5E3C}.Release_2018_zhCN|x64.Build.0 = Release_2018_zhCN|x64
+		{5EDCF4FD-0291-4FB9-8D96-D58957CA5E3C}.Release_2018_zhCN|x86.ActiveCfg = Release_2018_zhCN|Win32
+		{5EDCF4FD-0291-4FB9-8D96-D58957CA5E3C}.Release_2018_zhCN|x86.Build.0 = Release_2018_zhCN|Win32
 		{5EDCF4FD-0291-4FB9-8D96-D58957CA5E3C}.Release|x64.ActiveCfg = Release|x64
 		{5EDCF4FD-0291-4FB9-8D96-D58957CA5E3C}.Release|x64.Build.0 = Release|x64
 		{5EDCF4FD-0291-4FB9-8D96-D58957CA5E3C}.Release|x86.ActiveCfg = Release|Win32
@@ -140,6 +154,10 @@ Global
 		{EC81A9F3-88A6-4170-B7B4-C41CB789A7F6}.Release_2017|x64.Build.0 = Release_2017|x64
 		{EC81A9F3-88A6-4170-B7B4-C41CB789A7F6}.Release_2017|x86.ActiveCfg = Release_2017|Win32
 		{EC81A9F3-88A6-4170-B7B4-C41CB789A7F6}.Release_2017|x86.Build.0 = Release_2017|Win32
+		{EC81A9F3-88A6-4170-B7B4-C41CB789A7F6}.Release_2018_zhCN|x64.ActiveCfg = Release_2018_zhCN|x64
+		{EC81A9F3-88A6-4170-B7B4-C41CB789A7F6}.Release_2018_zhCN|x64.Build.0 = Release_2018_zhCN|x64
+		{EC81A9F3-88A6-4170-B7B4-C41CB789A7F6}.Release_2018_zhCN|x86.ActiveCfg = Release_2018_zhCN|Win32
+		{EC81A9F3-88A6-4170-B7B4-C41CB789A7F6}.Release_2018_zhCN|x86.Build.0 = Release_2018_zhCN|Win32
 		{EC81A9F3-88A6-4170-B7B4-C41CB789A7F6}.Release|x64.ActiveCfg = Release|x64
 		{EC81A9F3-88A6-4170-B7B4-C41CB789A7F6}.Release|x64.Build.0 = Release|x64
 		{EC81A9F3-88A6-4170-B7B4-C41CB789A7F6}.Release|x86.ActiveCfg = Release|Win32
@@ -151,5 +169,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BCE971C3-2087-49D4-9011-90187F76C327}
 	EndGlobalSection
 EndGlobal
