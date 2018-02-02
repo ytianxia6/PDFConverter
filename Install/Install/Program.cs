@@ -25,6 +25,7 @@ namespace Install
                 "*      本项目遵循 GNU-GPL v3 开源协议                       *",
                 "*      任何人可以从以下地址获取本程序源代码：               *",
                 "*      https://github.com/ArphonePei/PDFConverter           *",
+                "*      https://github.com/ytianxia6/PDFConverter            *",
                 "*************************************************************",
                 "",
                 "",

@@ -5,19 +5,21 @@ using System.Text;
 
 namespace Install
 {
+
+
     class ProductList
     {
-        private Product[] m_prods =
+        public Product[] Products { get; } =
         {
-            new Product() { Key='1', Name="zwcad", Desc="中望CAD 2017(x86)", Language="zh-CN", IsX64=false, FileName="PDFConverter.zrx" },
-            new Product() { Key='2', Name="zwcada", Desc="中望CAD 建筑版2017(x86)", Language="zh-CN", IsX64=false, FileName="PDFConverter.zrx" },
-            new Product() { Key='3', Name="zwcadm", Desc="中望CAD 机械版2017(x86)", Language="zh-CN", IsX64=false, FileName="PDFConverter.zrx" },
-            new Product() { Key='4', Name="zwcad", Desc="中望CAD 2017(x64)", Language="zh-CN", IsX64=true, FileName="PDFConverterx64.zrx" },
-            new Product() { Key='5', Name="zwcada", Desc="中望CAD 建筑版2017(x64)", Language="zh-CN", IsX64=true, FileName="PDFConverterx64.zrx" },
-            new Product() { Key='6', Name="zwcadm", Desc="中望CAD 机械版2017(x64)", Language="zh-CN", IsX64=true, FileName="PDFConverterx64.zrx" },
+            new Product() { Key='1', Name="zwcad", CadVer = ProductVer, Desc=$"中望CAD {ProductVer}(x86)", Language="zh-CN", IsX64=false, FileName=@"Win32\PDFConverter.zrx" },
+            new Product() { Key='2', Name="zwcada", CadVer = ProductVer, Desc=$"中望CAD 建筑版{ProductVer}(x86)", Language="zh-CN", IsX64=false, FileName=@"Win32\PDFConverter.zrx" },
+            new Product() { Key='3', Name="zwcadm", CadVer = ProductVer, Desc=$"中望CAD 机械版{ProductVer}(x86)", Language="zh-CN", IsX64=false, FileName=@"Win32\PDFConverter.zrx" },
+            new Product() { Key='4', Name="zwcad", CadVer = ProductVer, Desc=$"中望CAD {ProductVer}(x64)", Language="zh-CN", IsX64=true, FileName=@"x64\PDFConverter.zrx" },
+            new Product() { Key='5', Name="zwcada", CadVer = ProductVer, Desc=$"中望CAD 建筑版{ProductVer}(x64)", Language="zh-CN", IsX64=true, FileName=@"x64\PDFConverter.zrx" },
+            new Product() { Key='6', Name="zwcadm", CadVer = ProductVer, Desc=$"中望CAD 机械版{ProductVer}(x64)", Language="zh-CN", IsX64=true, FileName=@"x64\PDFConverter.zrx" },
+
         };
 
-        public Product[] Products { get { return m_prods; } }
         public Product[] ValidProducts
         {
             get
@@ -25,5 +27,11 @@ namespace Install
                 return Products.Where(prod => prod.Exist).ToArray();
             }
         }
+
+#if ZRX2017
+          public static ref readonly string ProductVer => ref $@"2017";
+#else
+        public static string ProductVer => $@"2018";
+#endif
     }
 }
