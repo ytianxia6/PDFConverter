@@ -64,7 +64,7 @@ namespace Install
             try
             {
                 Console.WriteLine("{0} 正在安装.", Desc);
-                string sRegPath = string.Format("Software\\ZWSoft\\{0}\\2017\\{1}\\Applications\\PdfConverter", Name, Language);
+                string sRegPath = string.Format("Software\\ZWSoft\\{0}\\2019\\{1}\\Applications\\PdfConverter", Name, Language);
                 var regApp = Registry.CurrentUser.CreateSubKey(sRegPath);
                 regApp.SetValue("LOADER", FilePath);
                 regApp.SetValue("LOADCTRLS", 4, RegistryValueKind.DWord);
@@ -100,12 +100,12 @@ namespace Install
                 string sRegPath;
                 if (IsX64 == Environment.Is64BitOperatingSystem)
                 {
-                    sRegPath = string.Format(@"Software\ZwSoft\{0}\2017\{1}", Name, Language);
+                    sRegPath = string.Format(@"Software\ZwSoft\{0}\2019\{1}", Name, Language);
                 }
                 else
                 {
                     // 只有64位操作系统上的32位平台了
-                    sRegPath = string.Format(@"Software\WOW6432Node\ZwSoft\{0}\2017\{1}", Name, Language);
+                    sRegPath = string.Format(@"Software\WOW6432Node\ZwSoft\{0}\2019\{1}", Name, Language);
                 }
 
                 var regKey = Registry.LocalMachine.OpenSubKey(sRegPath);
